@@ -4,4 +4,12 @@ public class BasicCard extends Card {
         super(Type.HAZARD, title);
         this.flipped = false;
     }
+
+    public boolean isFlipped() {
+        return flipped;
+    }
+
+    public void setFlipped(boolean flipped) {
+        this.flipped = flipped;
+    }
 }
