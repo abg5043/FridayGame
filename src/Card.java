@@ -1,4 +1,11 @@
-abstract class Card {
+public class Card {
+
+    enum Type {
+        BASIC,
+        HAZARD,
+        AGING
+    }
+
     private String title;
     private Type type;
 
