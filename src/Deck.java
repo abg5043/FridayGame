@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -5,6 +6,7 @@ import java.util.Collections;
 abstract class Deck {
     private ArrayList<Card> drawPile = new ArrayList<>();
     private ArrayList<Card> discardPile = new ArrayList<>();
+    private ArrayList<Card> destroyedPile = new ArrayList<>();
 
     public Deck(Card ... cards) {
         addCards(cards);
@@ -40,16 +42,24 @@ abstract class Deck {
         Collections.shuffle(drawPile);
     }
 
-    public void shuffleDiscardPile() {
-        Collections.shuffle(discardPile);
-    }
-
     public int getNumDrawCards() {
         return drawPile.size();
     }
 
     public int getNumDiscardCards() {
         return discardPile.size();
+    }
+
+    public void restockDrawPile() {
+        while(!discardPile.isEmpty()) {
+            drawPile.add(discardPile.get(0));
+            discardPile.remove(0);
+        }
+        shuffleDrawPile();
+    }
+
+    public Card getDrawCard() {
+        return drawPile.get(0);
     }
 
 }

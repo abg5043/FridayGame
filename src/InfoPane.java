@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 
 public class InfoPane extends HBox {
-    public InfoPane(LifePoints lifePoints, BasicDeck basicDeck) {
+    public InfoPane(LifePoints lifePoints, BasicDeck basicDeck, HazardDeck hazardDeck, AgeDeck ageDeck) {
         //Overall styling
         this.setPadding(new Insets(15, 12, 15, 12));
         this.setSpacing(10);

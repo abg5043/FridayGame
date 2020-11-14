@@ -3,15 +3,18 @@ public class Card {
     enum Type {
         BASIC,
         HAZARD,
-        AGING
+        AGE
     }
 
     private String title;
     private Type type;
+    private int attack;
 
-    public Card(Type type, String Title) {
+    public Card(Type type, String title, int attack) {
         this.type = type;
-        this.title = Title;
+        this.title = title;
+        this.attack = attack;
+
     }
 
     public String getTitle() {
