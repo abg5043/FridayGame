@@ -24,6 +24,7 @@ public class HazardCard extends Card {
         this.ability = ability;
         this.defense = defense;
         this.flippedTitle = flippedTitle;
+        this.freeCards = freeCards;
     }
 
     public HazardAbility getAbility() {
@@ -45,4 +46,7 @@ public class HazardCard extends Card {
     public boolean isFlipped() {
         return flipped;
     }
+
 }
+
+

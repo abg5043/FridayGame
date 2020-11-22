@@ -1,14 +1,17 @@
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
+
 
 public class ButtonPane extends HBox {
-    public ButtonPane(LifePoints lifePoints, BasicDeck basicDeck, HazardDeck hazardDeck, AgeDeck ageDeck) {
+    //Tracks number of times draw button is pushed
+    private int numDraws = 0;
+    private boolean doneDrawing = false;
+
+
+    //constructor
+    public ButtonPane(LifePoints lifePoints, BasicDeck basicDeck, HazardDeck hazardDeck, AgeDeck ageDeck, HazardDisplay currentHazard, BasicDeckPane drawnCards, InfoPane statusPane) {
         //Overall styling
         this.setPadding(new Insets(15, 12, 15, 12));
         this.setSpacing(10);
@@ -17,6 +20,7 @@ public class ButtonPane extends HBox {
         //Draw button
         Button drawButton = new Button("Draw");
         drawButton.setPrefSize(100, 20);
+
 
         //Claim Button
         Button claimButton = new Button("Claim");
@@ -28,5 +32,33 @@ public class ButtonPane extends HBox {
 
         this.getChildren().addAll(drawButton, claimButton, destroyButton);
 
+        //Set the action for draw
+        drawButton.setOnAction(e -> {
+            if(numDraws < hazardDeck.getTopDrawnCard().getFreeCards()) {
+                //Draw card
+                basicDeck.drawCard();
+                //Display top drawn card
+                Card currentDrawnCard = basicDeck.getTopDrawnCard();
+                drawnCards.getChildren().add(new Label(
+                        currentDrawnCard.getTitle() +
+                        " (" + currentDrawnCard.getAttack() + " attack)"
+                ));
+                //update num draws
+                numDraws++;
+
+                //update the status pane
+                statusPane.updateCardsLeft();
+
+            } else if(doneDrawing == false) {
+                //update the status pane
+                statusPane.updateStatus("Sorry, out of draws!");
+                doneDrawing = true; //make it so that you can't draw anymore
+            }
+        });
+
     }
+
+
+
+
 }

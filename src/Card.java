@@ -32,5 +32,9 @@ public class Card {
     public void setType(Type type) {
         this.type = type;
     }
+
+    public int getAttack() {
+        return attack;
+    }
 }
 

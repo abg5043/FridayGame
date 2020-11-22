@@ -1,6 +1,3 @@
-
-import java.util.ArrayList;
-
 public class HazardDeck extends Deck {
 
     HazardDeck() {
@@ -23,13 +20,12 @@ public class HazardDeck extends Deck {
 
         shuffleDrawPile();
     }
-/**
- * The following method was my attempt to override getDrawCard so that it can return a HazardCard object instead of a Card object
+
     @Override
-    public HazardCard getDrawCard() {
-        Card drawnCard = getDrawCard();
+    public HazardCard getTopDrawnCard() {
+        Card drawnCard = super.getTopDrawnCard();
         HazardCard castedCard = (HazardCard)drawnCard;
         return castedCard;
     }
-    */
+
 }
