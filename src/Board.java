@@ -10,13 +10,14 @@ public class Board extends BorderPane {
 
         //initialize life points and basic deck
         LifePoints life = new LifePoints();
+
         //Fields containing the three decks and life points for the game
         BasicDeck basicDeck = new BasicDeck();
         HazardDeck hazardDeck = new HazardDeck();
         AgeDeck ageDeck = new AgeDeck();
 
         //construct top status bar
-        InfoPane statusBar = new InfoPane(life, basicDeck, hazardDeck, ageDeck);
+        InfoPane statusBar = new InfoPane(life, basicDeck);
         this.setTop(statusBar);
 
         //construct center display of current hazard to fight
@@ -28,14 +29,14 @@ public class Board extends BorderPane {
         currentHazard.setPrefWidth(300);
 
         //construct left pane that displays drawn cards
-        BasicDeckPane drawnCards = new BasicDeckPane(life, basicDeck, hazardDeck, ageDeck);
+        BasicDeckPane drawnCards = new BasicDeckPane();
         this.setLeft(drawnCards);
         drawnCards.setAlignment(Pos.CENTER);
         drawnCards.setPrefWidth(300);
 
 
         //construct buttons on bottom
-        ButtonPane actions = new ButtonPane(life, basicDeck, hazardDeck, ageDeck, currentHazard, drawnCards, statusBar);
+        ButtonPane actions = new ButtonPane(life, basicDeck, hazardDeck, currentHazard, drawnCards, statusBar);
         actions.setAlignment(Pos.CENTER);
         this.setBottom(actions);
 
@@ -43,10 +44,6 @@ public class Board extends BorderPane {
         FlowPane blankPane = new FlowPane();
         this.setRight(blankPane);
         blankPane.setPrefWidth(300);
-
-
-
-
 
     }
 

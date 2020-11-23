@@ -1,13 +1,11 @@
-import javax.management.remote.SubjectDelegationPermission;
-
 public class HazardCard extends Card {
 
 
     private boolean flipped;
-    private HazardAbility ability;
-    private int freeCards;
-    private int defense;
-    private String flippedTitle;
+    private final HazardAbility ability;
+    private final int freeCards;
+    private final int defense;
+    private final String flippedTitle;
 
     public HazardCard(String title, int defense, int freeCards, int attack, String flippedTitle) {
         super(Type.HAZARD, title, attack);
@@ -27,10 +25,6 @@ public class HazardCard extends Card {
         this.freeCards = freeCards;
     }
 
-    public HazardAbility getAbility() {
-        return ability;
-    }
-
     public int getDefense() {
         return defense;
     }
@@ -47,6 +41,18 @@ public class HazardCard extends Card {
         return flipped;
     }
 
+    public void setFlipped(boolean flipped) {
+        this.flipped = flipped;
+    }
+
+    @Override
+    public String getTitle() {
+        if(this.isFlipped()) {
+            return getFlippedTitle();
+        } else {
+            return super.getTitle();
+        }
+    }
 }
 
 

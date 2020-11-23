@@ -7,8 +7,16 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
 public class HazardDisplay extends VBox {
+    HazardDeck hazardDeck;
+
     public HazardDisplay(HazardDeck hazardDeck) {
         this.setSpacing(15);
+        this.hazardDeck = hazardDeck;
+        updateHazardDisplay();
+    }
+
+    public void updateHazardDisplay() {
+        this.getChildren().clear(); //clears any existing labels
 
         //Create Title
         HBox title = new HBox();
@@ -24,8 +32,8 @@ public class HazardDisplay extends VBox {
         hazardDeck.drawCard();  //Draw a card
         Label cardTitle = new Label(hazardDeck.getTopDrawnCard().getTitle());
         cardTitle.setFont(fontItalic);
-        Label defense = new Label("Current defense: " + Integer.toString((hazardDeck.getTopDrawnCard()).getDefense()));
-        Label freeCards = new Label("Free draws: " + Integer.toString(hazardDeck.getTopDrawnCard().getFreeCards()));
+        Label defense = new Label("Current defense: " + (hazardDeck.getTopDrawnCard()).getDefense());
+        Label freeCards = new Label("Free draws: " + (hazardDeck.getTopDrawnCard()).getFreeCards());
 
         //Add everything to the pane
         getChildren().addAll(title, cardTitle, defense, freeCards);

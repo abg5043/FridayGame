@@ -9,12 +9,8 @@ public class LifePoints {
         return currentLife;
     }
 
-    public void subtractLife() {
-        if(currentLife > 0) currentLife--;
-        else currentLife = 0;
+    public void subtractLife(int life) {
+        this.currentLife -= life;
     }
 
-    public void addLife() {
-        currentLife++;
-    }
 }

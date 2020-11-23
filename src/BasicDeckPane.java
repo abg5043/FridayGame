@@ -9,8 +9,9 @@ import javafx.scene.text.FontWeight;
 
 public class BasicDeckPane extends VBox {
     VBox drawnCards;
+    int numCard = 1;
 
-    public BasicDeckPane(LifePoints lifePoints, BasicDeck basicDeck, HazardDeck hazardDeck, AgeDeck ageDeck) {
+    public BasicDeckPane() {
         this.setSpacing(15);
         this.setPadding(new Insets(12, 12, 12, 12));
 
@@ -24,10 +25,20 @@ public class BasicDeckPane extends VBox {
 
         //Create Blank Vbox for drawn cards
         drawnCards = new VBox();
+        drawnCards.setAlignment(Pos.BASELINE_CENTER);
 
 
         //Add everything to the pane
         getChildren().addAll(title, drawnCards);
     }
 
+    public void removeDisplayedCards() {
+        drawnCards.getChildren().clear();
+        this.numCard = 1;
+    }
+
+    public void addDisplayedCard(String string) {
+        drawnCards.getChildren().add(new Label(numCard + ") " + string));
+        numCard++;
+    }
 }
