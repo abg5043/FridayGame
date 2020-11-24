@@ -68,7 +68,7 @@ public class ButtonPane extends HBox {
             //Check if there are no cards to draw
             if(basicDeck.getNumDrawPileCards() <= 0) {
                 if(basicDeck.getNumDiscardCards() <= 0) { //If no cards anywhere, you lose
-                    endGame();
+                    loseGame();
                 } else {
                     basicDeck.restockDrawPile(); //If you have cards in discard pile, you can reshuffle them in
                     statusPane.updateDrawPileCardsLeft();
@@ -103,6 +103,11 @@ public class ButtonPane extends HBox {
             statusPane.updateStatus("");
             drawButton.setDisable(false);
 
+            //Check if you WON (aka there are no more hazards left)
+            if(hazardDeck.getDrawPile().size() == 0) {
+                winGame();
+            }
+
 
         });
 
@@ -124,6 +129,8 @@ public class ButtonPane extends HBox {
             //destroy current hazard
             hazardDeck.destroyDrawnCards();
 
+
+
             //update drawn card display
             drawnCards.removeDisplayedCards();
 
@@ -137,15 +144,21 @@ public class ButtonPane extends HBox {
             statusPane.updateStatus("");
             drawButton.setDisable(false);
 
+
+            //Check if you WON (aka there are no more hazards left)
+            if(hazardDeck.getDrawPile().size() == 0) {
+                winGame();
+            }
+
             //check if you lost based on life...if so, disable everything
             if(lifePoints.getCurrentLife() < 0) {
-                endGame();
+                loseGame();
             }
 
             //check if you lost based on no more cards...if so, disable everything
             if(basicDeck.getNumDrawPileCards() <= 0) {
                 if(basicDeck.getNumDiscardCards() <= 0) { //If no cards anywhere, you lose
-                    endGame();
+                    loseGame();
                 } else {
                     basicDeck.restockDrawPile(); //If you have cards in discard pile, you can reshuffle them in
                     statusPane.updateDrawPileCardsLeft();
@@ -161,14 +174,19 @@ public class ButtonPane extends HBox {
     }
 
 
-    public void endGame() {
+    public void loseGame() {
         statusPane.updateStatus("Sorry, you lost!");
         claimButton.setDisable(true);
         drawButton.setDisable(true);
         destroyButton.setDisable(true);
     }
 
-
+    public void winGame() {
+        statusPane.updateStatus("Yay! You won!");
+        claimButton.setDisable(true);
+        drawButton.setDisable(true);
+        destroyButton.setDisable(true);
+    }
 
 
 }
