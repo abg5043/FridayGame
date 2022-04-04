@@ -7,7 +7,6 @@ public class Board extends BorderPane {
 
     public Board() {
 
-
         //initialize life points and basic deck
         LifePoints life = new LifePoints();
 
@@ -44,7 +43,6 @@ public class Board extends BorderPane {
         FlowPane blankPane = new FlowPane();
         this.setRight(blankPane);
         blankPane.setPrefWidth(300);
-
     }
 
     @Override
